@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 require("dotenv").config();
 
 // Mongoose Models
@@ -659,8 +660,18 @@ app.get("/api/ai-status", (req, res) => {
     });
 });
 
+// Render Health Check endpoint
+app.get("/health", (req, res) => {
+    res.status(200).send("OK");
+});
+
+// Root Route fallback
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "index.html"));
+});
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`[STUDY NOTES SERVER] Running on port ${PORT} • Owner: Nikhil Tetarwal`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`[STUDY NOTES SERVER] Running on port ${PORT} (0.0.0.0) • Owner: Nikhil Tetarwal`);
 });

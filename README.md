@@ -153,3 +153,28 @@ Visit in your web browser:
 - No plain-text passwords or sensitive database credentials exposed to frontend clients.
 - Existing user accounts (`nikh@gmail.com`, `lucky@gmail.com`, etc.) preserved in the `studynotes` database.
 - Private Network Access (PNA) and CORS headers configured for local testing.
+
+---
+
+## ☁️ Deploy to Render (render.com)
+
+Deploy in 2 minutes on **Render Free Web Service**:
+
+1. Log in to [Render Dashboard](https://dashboard.render.com/).
+2. Click **New +** ➔ **Web Service**.
+3. Select your connected GitHub repository: `NIKHIL995084/studynotes`.
+4. Enter configuration settings:
+   - **Name:** `studynotes-ai`
+   - **Region:** Any (e.g. Singapore, Oregon, Frankfurt)
+   - **Branch:** `main`
+   - **Root Directory:** (leave blank / root)
+   - **Runtime:** `Node`
+   - **Build Command:** `npm run build`
+   - **Start Command:** `npm start`
+5. Under **Environment Variables**, add:
+   - `MONGO_URI`: `your_mongodb_atlas_connection_string`
+   - (Optional) `GEMINI_API_KEY`: `your_gemini_api_key`
+6. Click **Deploy Web Service**!
+
+Render will build and run your backend and frontend together with a live HTTPS URL (e.g., `https://studynotes-ai.onrender.com`).
+
