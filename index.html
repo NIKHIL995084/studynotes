@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes — Learn Smarter. Revise Faster. Score Better.</title>
+    <!-- Google Fonts for Ultra-Clean Tech Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- ================= 1. OPENING INTRO ANIMATION (1-2s BRAND REVEAL) ================= -->
+    <div class="brand-intro-overlay" id="cinematicIntro">
+        <button class="skip-intro-btn" id="skipIntroBtn" title="Skip Intro">Skip Intro ➔</button>
+        <div class="intro-card-inner">
+            <div class="intro-emblem-wrap">
+                <div class="intro-book-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="intro-brand-title">STUDY<span class="intro-highlight">NOTES</span></h1>
+            <p class="intro-tagline-text">Learn Smarter. Revise Faster. Score Better.</p>
+            <div class="intro-progress-bar-wrap">
+                <div class="intro-progress-fill" id="introProgressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 2. MODERN FLOATING FROSTED HEADER ================= -->
+    <header class="floating-header" id="mainHeader">
+        <div class="header-inner">
+            <!-- Brand Logo -->
+            <a href="#home" class="brand-logo" aria-label="Study Notes Home">
+                <div class="logo-crest">
+                    <span class="crest-text">SN</span>
+                    <span class="crest-dot"></span>
+                </div>
+                <div class="brand-naming">
+                    <span class="brand-prime">STUDY<span class="accent-text">NOTES</span></span>
+                    <span class="brand-badge-tag">AI CORE v3.2</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links-center" id="navCenterMenu">
+                <a href="#home" class="nav-item active">Home</a>
+                <a href="#generator" class="nav-item">Generate Notes</a>
+                <a href="#quick-revision" class="nav-item">Quick Revision</a>
+                <a href="#mcq-section" class="nav-item">MCQ Practice</a>
+                <a href="#pyq-section" class="nav-item">PYQs</a>
+                <a href="#mock-section" class="nav-item">Mock Tests</a>
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+            </nav>
+
+            <!-- Header Right Tools -->
+            <div class="header-right-tools">
+                <!-- Theme Switcher -->
+                <button class="theme-switch-btn" id="themeToggleBtn" title="Toggle Theme (Dark / Light / Eye-Comfort)">
+                    <span id="themeIcon">🌙</span>
+                </button>
+
+                <!-- LOGGED OUT BUTTONS -->
+                <div class="auth-group-logged-out" id="authLoggedOutGroup">
+                    <button class="btn btn-nav-outline" id="navLoginBtn" data-auth-mode="login">Sign In</button>
+                    <button class="btn btn-nav-primary" id="navRegisterBtn" data-auth-mode="register">Register</button>
+                </div>
+
+                <!-- LOGGED IN USER DROPDOWN -->
+                <div class="auth-group-logged-in" id="authLoggedInGroup" style="display: none;">
+                    <div class="account-dropdown-wrapper">
+                        <button class="account-badge-btn" id="accountTriggerBtn">
+                            <span class="avatar-initials" id="navAvatarInitials">ST</span>
+                            <span class="avatar-name" id="navUserName">Student</span>
+                            <span class="caret-arrow">▾</span>
+                        </button>
+
+                        <div class="account-menu-card" id="accountDropdownMenu">
+                            <div class="menu-user-banner">
+                                <div class="banner-avatar" id="dropdownAvatarInitials">ST</div>
+                                <div class="banner-text">
+                                    <strong id="dropdownUserFullName">Student Account</strong>
+                                    <small id="dropdownUserEmail">student@example.com</small>
+                                </div>
+                            </div>
+                            <div class="menu-divider"></div>
+                            <a href="dashboard.html" class="menu-link">📊 Student Dashboard</a>
+                            <a href="#generator" class="menu-link">📝 Generate Notes</a>
+                            <a href="#" class="menu-link" id="menuVaultLink">💾 Saved Notes Vault</a>
+                            <a href="users.html" class="menu-link">👥 Student Records</a>
+                            <div class="menu-divider"></div>
+                            <button class="menu-link logout-btn-item" id="logoutBtn">
+                                <span>🚪</span>
+                                <strong>Sign Out Safe</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Hamburger -->
+                <button class="mobile-menu-burger" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= 3. HERO SECTION ================= -->
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-badge-pill">
+                    <span class="badge-signal"></span>
+                    <span>AI Academic Engine • 6 Multi-Cloud Providers Active</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Master Any Syllabus With <span class="gradient-text">Intelligent Study Notes</span>
+                </h1>
+                <p class="hero-subtext">
+                    Learn Smarter. Revise Faster. Score Better. Turn raw textbooks, complex concepts, and equations into high-yield exam sheets, flashcards, and verified practice tests.
+                </p>
+
+                <!-- Hero Fast Topic Search -->
+                <div class="hero-fast-search-box spot-card">
+                    <div class="search-input-shell">
+                        <input type="text" id="heroQuickInput" class="search-main-input" placeholder="Enter any topic (e.g. Thermodynamics, Newton's Laws, Organic Chemistry, Python OOP)..." value="Newton's Laws of Motion: Inertia, Force and Momentum">
+                        <button class="btn btn-hero-primary" id="heroQuickGenBtn">
+                            <span>Generate Notes ⚡</span>
+                        </button>
+                    </div>
+                    <div class="hero-shortcut-tags">
+                        <span class="shortcut-label">High-Yield Presets:</span>
+                        <button type="button" class="preset-pill" data-topic="Newton's Laws of Motion: Inertia, Force &amp; Dynamics">⚙️ Newton's Laws</button>
+                        <button type="button" class="preset-pill" data-topic="Photosynthesis: Light &amp; Dark Reactions">🌿 Photosynthesis</button>
+                        <button type="button" class="preset-pill" data-topic="Thermodynamics: Heat, Work &amp; Entropy">🔥 Thermodynamics</button>
+                        <button type="button" class="preset-pill" data-topic="Python Data Structures: Lists, Dictionaries &amp; O(n)">🐍 Python OOP</button>
+                    </div>
+                </div>
+
+                <!-- Action Shortcut Cards -->
+                <div class="hero-shortcut-grid">
+                    <a href="#generator" class="action-shortcut-card spot-card">
+                        <div class="shortcut-icon">📝</div>
+                        <h4>12 Notes Formats</h4>
+                        <p>Academic summaries, bullet sheets &amp; formulas</p>
+                    </a>
+                    <a href="#quick-revision" class="action-shortcut-card spot-card">
+                        <div class="shortcut-icon">⚡</div>
+                        <h4>5-Min Quick Revision</h4>
+                        <p>High-yield rapid review &amp; 3D flashcards</p>
+                    </a>
+                    <a href="#mcq-section" class="action-shortcut-card spot-card">
+                        <div class="shortcut-icon">🎯</div>
+                        <h4>MCQ Practice Engine</h4>
+                        <p>Instant scoring, timer &amp; detailed explanations</p>
+                    </a>
+                    <a href="#pyq-section" class="action-shortcut-card spot-card">
+                        <div class="shortcut-icon">📜</div>
+                        <h4>Verified PYQ Bank</h4>
+                        <p>CBSE, JEE, NEET &amp; University questions</p>
+                    </a>
+                    <a href="#mock-section" class="action-shortcut-card spot-card">
+                        <div class="shortcut-icon">⏱️</div>
+                        <h4>Mock Test Simulator</h4>
+                        <p>Real exam interface with negative marking</p>
+                    </a>
+                </div>
+
+                <!-- Verified Academic Trust Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card spot-card">
+                        <strong class="metric-num">50,000+</strong>
+                        <span class="metric-title">Curriculum Concepts</span>
+                    </div>
+                    <div class="metric-card spot-card">
+                        <strong class="metric-num">99.8%</strong>
+                        <span class="metric-title">Exam Alignment</span>
+                    </div>
+                    <div class="metric-card spot-card">
+                        <strong class="metric-num">3.5x</strong>
+                        <span class="metric-title">Faster Revision</span>
+                    </div>
+                    <div class="metric-card spot-card">
+                        <strong class="metric-num">100% Free</strong>
+                        <span class="metric-title">For All Students</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. AI STUDY NOTES GENERATOR STUDIO ================= -->
+        <section class="generator-section" id="generator">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="section-tag-badge">CORE WORKBENCH</span>
+                    <h2 class="section-main-heading">Intelligent Notes Generator Studio</h2>
+                    <p class="section-description">Customize subject, academic level, language, and format to synthesize complete study notes.</p>
+                </div>
+
+                <div class="generator-workspace-card spot-card">
+                    <!-- Advanced Parameter Form -->
+                    <div class="generator-input-panel">
+                        <!-- Topic Input -->
+                        <div class="input-form-row">
+                            <label for="generatorTopicInput" class="input-title-label">Topic / Syllabus Chapter / Concept</label>
+                            <div class="search-input-shell">
+                                <input type="text" id="generatorTopicInput" class="search-main-input" value="Newton's Laws of Motion: Inertia, Force and Momentum" placeholder="Enter topic here...">
+                                <button class="btn btn-generate-submit" id="mainGenerateBtn">
+                                    <span>Synthesize Notes ⚡</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Parameter Grid -->
+                        <div class="param-grid-row">
+                            <!-- Subject -->
+                            <div class="param-field">
+                                <label for="genSubject" class="param-label">Subject</label>
+                                <select id="genSubject" class="param-select">
+                                    <option value="Physics" selected>Physics</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="Biology">Biology &amp; Medical Sciences</option>
+                                    <option value="Mathematics">Mathematics</option>
+                                    <option value="Computer Science">Computer Science &amp; IT</option>
+                                    <option value="Engineering">Engineering Mechanics/EE</option>
+                                    <option value="General">General Academic</option>
+                                </select>
+                            </div>
+
+                            <!-- Class / Course -->
+                            <div class="param-field">
+                                <label for="genGrade" class="param-label">Class / Course</label>
+                                <select id="genGrade" class="param-select">
+                                    <option value="high_school">High School (Class 9-12)</option>
+                                    <option value="college" selected>College Undergraduate (B.Sc/B.Tech)</option>
+                                    <option value="competitive">Competitive Entrance (JEE/NEET/UPSC)</option>
+                                    <option value="postgrad">Postgraduate / Research</option>
+                                </select>
+                            </div>
+
+                            <!-- Exam Type -->
+                            <div class="param-field">
+                                <label for="genExamType" class="param-label">Exam Type</label>
+                                <select id="genExamType" class="param-select">
+                                    <option value="General Exam" selected>Standard Curriculum Exam</option>
+                                    <option value="CBSE Board">CBSE / State Board Exam</option>
+                                    <option value="JEE Main & Adv">JEE Main &amp; Advanced</option>
+                                    <option value="NEET">NEET Medical Entrance</option>
+                                    <option value="University Semester">University Semester Finals</option>
+                                    <option value="UPSC">UPSC Civil Services</option>
+                                </select>
+                            </div>
+
+                            <!-- Output Format (12 Formats) -->
+                            <div class="param-field">
+                                <label for="genFormat" class="param-label">Output Format</label>
+                                <select id="genFormat" class="param-select">
+                                    <option value="Detailed Academic Notes" selected>1. Detailed Academic Notes</option>
+                                    <option value="Simple Summary">2. Simple Summary</option>
+                                    <option value="Bullet Revision Notes">3. Bullet Revision Notes</option>
+                                    <option value="Concept Explainer">4. Concept Explainer</option>
+                                    <option value="Formula & Definition Sheet">5. Formula &amp; Definition Sheet</option>
+                                    <option value="Mind Map / Text Flowchart Outline">6. Mind Map / Text Flowchart</option>
+                                    <option value="Exam-Ready Answers">7. Exam-Ready Answers</option>
+                                    <option value="Q&A / FAQ Format">8. Q&amp;A / FAQ Format</option>
+                                    <option value="Flashcards">9. Flashcard Set</option>
+                                    <option value="MCQ Practice Set">10. MCQ Practice Set</option>
+                                    <option value="Case Study / Real-World Example">11. Case Study &amp; Real World</option>
+                                    <option value="Hindi / Bilingual Notes">12. Hindi / Bilingual Notes</option>
+                                </select>
+                            </div>
+
+                            <!-- Language -->
+                            <div class="param-field">
+                                <label for="genLanguage" class="param-label">Language</label>
+                                <select id="genLanguage" class="param-select">
+                                    <option value="English" selected>English</option>
+                                    <option value="Hindi">Hindi (हिंदी)</option>
+                                    <option value="Bilingual">Bilingual (Hinglish / Mixed)</option>
+                                </select>
+                            </div>
+
+                            <!-- Difficulty -->
+                            <div class="param-field">
+                                <label for="genDifficulty" class="param-label">Difficulty</label>
+                                <select id="genDifficulty" class="param-select">
+                                    <option value="Beginner">Beginner (Foundations)</option>
+                                    <option value="Intermediate" selected>Intermediate (Standard)</option>
+                                    <option value="Advanced">Advanced (Topper Level)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Feature Toggles -->
+                        <div class="param-toggles-row">
+                            <label class="toggle-checkbox-label">
+                                <input type="checkbox" id="toggleExamples" checked>
+                                <span>Include Real-World Examples</span>
+                            </label>
+                            <label class="toggle-checkbox-label">
+                                <input type="checkbox" id="toggleDiagrams" checked>
+                                <span>Include Diagram / Flowchart</span>
+                            </label>
+                            <label class="toggle-checkbox-label">
+                                <input type="checkbox" id="toggleQuestions" checked>
+                                <span>Include Practice Questions</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Output Screen & Action Toolbar -->
+                    <div class="generator-output-panel" id="generatorOutputPanel">
+                        <!-- Toolbar -->
+                        <div class="output-header-bar">
+                            <div class="output-title-group">
+                                <h3 class="output-topic-heading" id="outputTopicTitle">Newton's Laws of Motion: Inertia, Force &amp; Dynamics</h3>
+                                <div class="output-badges-row">
+                                    <span class="output-meta-pill" id="outputMetaBadge">Subject: Physics • Level: College</span>
+                                    <span class="source-tag-pill" id="outputSourceBadge">Study Notes Academic Engine</span>
+                                </div>
+                            </div>
+
+                            <!-- Comprehensive Functional Tools -->
+                            <div class="output-tools-row">
+                                <button class="btn-micro-tool" id="saveNotesBtn" title="Save to MongoDB Vault">💾 Save to Vault</button>
+                                <button class="btn-micro-tool" id="editNotesBtn" title="Edit Note Content">✏️ Edit Notes</button>
+                                <button class="btn-micro-tool" id="regenNotesBtn" title="Regenerate with AI">🔄 Regenerate</button>
+                                <button class="btn-micro-tool" id="shortenNotesBtn" title="Make Shorter">✂️ Shorten</button>
+                                <button class="btn-micro-tool" id="expandNotesBtn" title="Expand Details">📖 Expand</button>
+                                <button class="btn-micro-tool" id="translateNotesBtn" title="Translate English / Hindi">🌐 Translate</button>
+                                <button class="btn-micro-tool" id="copyNotesBtn" title="Copy to Clipboard">📋 Copy</button>
+                                <button class="btn-micro-tool" id="printNotesBtn" title="Print Notes">🖨️ Print</button>
+                                <button class="btn-micro-tool" id="downloadMdBtn" title="Download Markdown">⬇️ Export MD</button>
+                                <button class="btn-micro-tool" id="bookmarkNoteBtn" title="Bookmark this Note">⭐ Bookmark</button>
+                                <button class="btn-micro-tool" id="viewVaultBtn" title="View Saved Notes">📂 My Vault (<span id="vaultCountBadge">0</span>)</button>
+                            </div>
+                        </div>
+
+                        <!-- Editable Content Stream -->
+                        <div class="output-content-stream" id="outputContentBody">
+                            <div class="stream-note-block">
+                                <h4 class="stream-heading">📌 High-Yield Core Concepts</h4>
+                                <ul class="stream-bullet-list" id="outputConceptList">
+                                    <li><strong>1st Law (Law of Inertia):</strong> An object persists in its state of rest or uniform rectilinear motion unless acted upon by a net external resultant force.</li>
+                                    <li><strong>2nd Law (Fundamental Law):</strong> Rate of change of linear momentum is proportional to applied force: F = dp/dt = m·a.</li>
+                                    <li><strong>3rd Law (Action-Reaction):</strong> For every action force, there exists an equal in magnitude and opposite in direction reaction collinear force (F_AB = -F_BA).</li>
+                                </ul>
+                            </div>
+
+                            <div class="stream-note-block">
+                                <h4 class="stream-heading">💡 Essential Formulas &amp; SI Units</h4>
+                                <div class="formula-display-box" id="outputFormulaBox">
+                                    Force: F = m · a (Newton, N = kg·m/s²) | Momentum: p = m · v | Impulse: J = ∫F dt = Δp
+                                </div>
+                            </div>
+
+                            <div class="stream-note-block">
+                                <h4 class="stream-heading">🎯 High-Yield Exam Tip &amp; Common Pitfall</h4>
+                                <p class="exam-caution-box" id="outputExamTip">
+                                    <strong>Common Mistake:</strong> Action and reaction forces NEVER act on the same body! They act on two distinct objects, which is why they never cancel each other.
+                                </p>
+                            </div>
+
+                            <div class="stream-note-block" id="outputFlowchartBlock">
+                                <h4 class="stream-heading">🗺️ Concept Flowchart &amp; Process Map</h4>
+                                <pre class="flowchart-pre-box" id="outputFlowchartBox">Applied Force ➔ Momentum Changes (dp/dt) ➔ Acceleration (a = F/m) ➔ Reaction Force (-F)</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. QUICK REVISION & FLASHCARDS MODE ================= -->
+        <section class="revision-section" id="quick-revision">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="section-tag-badge">RAPID MASTERY</span>
+                    <h2 class="section-main-heading">Quick Revision &amp; Interactive Flashcards</h2>
+                    <p class="section-description">Condense hours of reading into 5-minute memory sheets and interactive 3D flip flashcards.</p>
+                </div>
+
+                <div class="revision-workbench-grid">
+                    <!-- 5-Min & 15-Min Summary Sheet -->
+                    <div class="revision-sheet-card spot-card">
+                        <div class="sheet-top-header">
+                            <span class="sheet-badge">⚡ 5-MINUTE HIGH-YIELD SHEET</span>
+                            <h3 class="sheet-title" id="revSheetTitle">Thermodynamics &amp; Energy Conservation</h3>
+                        </div>
+                        <div class="sheet-content-list" id="revSummaryList">
+                            <div class="sheet-item"><strong>1st Law:</strong> Internal energy change ΔU = Q - W. Energy cannot be created or destroyed.</div>
+                            <div class="sheet-item"><strong>2nd Law:</strong> Total entropy of an isolated system always increases (ΔS ≥ 0). Natural processes are irreversible.</div>
+                            <div class="sheet-item"><strong>Carnot Engine:</strong> Maximum theoretical efficiency η = 1 - (T_Cold / T_Hot) (T in Kelvin).</div>
+                        </div>
+                        <div class="sheet-formula-row">
+                            <strong>Formula:</strong> <span id="revFormulaSpan">η = 1 - (T_C / T_H) | ΔU = Q - W</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive 3D Flip Flashcard Engine -->
+                    <div class="flashcard-engine-card spot-card">
+                        <div class="flashcard-top-bar">
+                            <span class="flashcard-counter" id="fcCounter">Card 1 of 3</span>
+                            <span class="flashcard-hint">Click card to flip 🔄</span>
+                        </div>
+
+                        <!-- 3D Card Shell -->
+                        <div class="flashcard-3d-scene">
+                            <div class="flashcard-3d-box" id="flashcardBox">
+                                <div class="flashcard-face flashcard-front">
+                                    <span class="fc-badge">QUESTION / TERM</span>
+                                    <h4 class="fc-front-text" id="fcFrontText">What is the Carnot engine efficiency formula?</h4>
+                                    <small class="fc-tap-prompt">Tap to reveal answer ➔</small>
+                                </div>
+                                <div class="flashcard-face flashcard-back">
+                                    <span class="fc-badge fc-back-badge">ANSWER / FORMULATION</span>
+                                    <p class="fc-back-text" id="fcBackText">η = 1 - (T_Cold / T_Hot), where source and sink temperatures MUST be measured in absolute Kelvin.</p>
+                                    <small class="fc-tap-prompt">Tap to flip back ➔</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="flashcard-controls-bar">
+                            <button class="btn-micro-tool" id="fcPrevBtn">◀ Previous</button>
+                            <button class="btn-micro-tool" id="fcFlipBtn">🔄 Flip Card</button>
+                            <button class="btn-micro-tool" id="fcNextBtn">Next ▶</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. MCQ PRACTICE & QUIZ ENGINE ================= -->
+        <section class="mcq-section" id="mcq-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="section-tag-badge">ACTIVE RECALL</span>
+                    <h2 class="section-main-heading">MCQ Practice &amp; Quiz Engine</h2>
+                    <p class="section-description">Test your conceptual retention with AI-generated exam questions, live scoring, and instant explanations.</p>
+                </div>
+
+                <div class="quiz-workbench-card spot-card">
+                    <!-- Quiz Header & Setup -->
+                    <div class="quiz-setup-strip">
+                        <div class="quiz-topic-setup">
+                            <input type="text" id="quizTopicInput" class="quiz-topic-field" placeholder="Topic for Quiz (e.g. Photosynthesis, Newton Laws, Python)..." value="Newton's Laws of Motion">
+                            <select id="quizDifficultySelect" class="quiz-select-field">
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate" selected>Intermediate</option>
+                                <option value="Advanced">Advanced (Topper)</option>
+                            </select>
+                            <button class="btn btn-hero-primary" id="launchQuizBtn">Start Quiz 🎯</button>
+                        </div>
+
+                        <div class="quiz-live-meta" id="quizLiveMeta" style="display: none;">
+                            <span class="quiz-timer-pill" id="quizTimerText">⏱️ 02:30</span>
+                            <span class="quiz-progress-pill" id="quizProgressText">Question 1 of 5</span>
+                        </div>
+                    </div>
+
+                    <!-- Active Question Arena -->
+                    <div class="quiz-arena" id="quizArena">
+                        <div class="question-header-row">
+                            <h3 class="quiz-question-prompt" id="quizQuestionText">Which fundamental law states that the rate of change of linear momentum is proportional to applied force?</h3>
+                        </div>
+
+                        <div class="quiz-options-list" id="quizOptionsList">
+                            <button class="quiz-option-btn" data-opt="0"><span class="opt-letter">A</span> Newton's First Law</button>
+                            <button class="quiz-option-btn" data-opt="1"><span class="opt-letter">B</span> Newton's Second Law</button>
+                            <button class="quiz-option-btn" data-opt="2"><span class="opt-letter">C</span> Newton's Third Law</button>
+                            <button class="quiz-option-btn" data-opt="3"><span class="opt-letter">D</span> Law of Conservation of Energy</button>
+                        </div>
+
+                        <div class="quiz-footer-actions">
+                            <button class="btn btn-hero-secondary" id="quizPrevQBtn">◀ Previous</button>
+                            <button class="btn btn-hero-primary" id="quizNextQBtn">Next Question ▶</button>
+                            <button class="btn btn-generate-submit" id="quizSubmitBtn" style="display: none;">Submit Quiz &amp; Save Score 🚀</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Scorecard Display (Shown upon submit) -->
+                    <div class="quiz-scorecard-panel" id="quizScorecardPanel" style="display: none;">
+                        <div class="scorecard-header text-center">
+                            <div class="score-crest">🏆</div>
+                            <h3>Quiz Evaluation Complete</h3>
+                            <div class="score-display-number"><span id="scoreFinalNum">5</span> / <span id="scoreTotalNum">5</span> (<span id="scorePercentNum">100%</span>)</div>
+                            <p id="scoreFeedbackText">Outstanding mastery! Your performance has been recorded in your MongoDB Atlas Student Vault.</p>
+                        </div>
+                        <div class="quiz-review-list" id="quizReviewList"></div>
+                        <div class="text-center" style="margin-top: 20px;">
+                            <button class="btn btn-hero-primary" id="quizRetakeBtn">🔄 Retake Another Quiz</button>
+                            <a href="dashboard.html" class="btn btn-hero-secondary">📊 View in Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 7. PREVIOUS YEAR QUESTIONS (PYQ) ================= -->
+        <section class="pyq-section" id="pyq-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="section-tag-badge">REAL EXAM ARCHIVE</span>
+                    <h2 class="section-main-heading">Previous Year Questions (PYQs)</h2>
+                    <p class="section-description">Search verified past questions with real exam tags, step-by-step marking schemes, and topper solutions.</p>
+                </div>
+
+                <div class="pyq-browser-card spot-card">
+                    <!-- Search & Filter Controls -->
+                    <div class="pyq-filter-bar">
+                        <input type="text" id="pyqSearchInput" class="pyq-search-box" placeholder="Search questions by topic, formula, or keyword...">
+                        <select id="pyqExamFilter" class="pyq-filter-select">
+                            <option value="">All Exams</option>
+                            <option value="JEE Main">JEE Main</option>
+                            <option value="NEET">NEET Entrance</option>
+                            <option value="CBSE Class 12">CBSE Class 12 Board</option>
+                            <option value="GATE CSE">GATE Computer Science</option>
+                        </select>
+                        <select id="pyqSubjectFilter" class="pyq-filter-select">
+                            <option value="">All Subjects</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Mathematics">Mathematics</option>
+                        </select>
+                    </div>
+
+                    <!-- PYQ Items List -->
+                    <div class="pyq-cards-container" id="pyqCardsList">
+                        <!-- Loaded dynamically via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 8. MOCK TEST SIMULATOR ================= -->
+        <section class="mock-section" id="mock-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="section-tag-badge">EXAM CONDITIONS</span>
+                    <h2 class="section-main-heading">Mock Test Simulator</h2>
+                    <p class="section-description">Replicate real competitive exam pressure with timed navigation, negative marking, and instant percentile analytics.</p>
+                </div>
+
+                <div class="mock-simulator-card spot-card">
+                    <!-- Pre-test Launcher Screen -->
+                    <div class="mock-launcher-screen" id="mockLauncherScreen">
+                        <div class="mock-info-hero text-center">
+                            <div class="mock-crest-icon">⏱️</div>
+                            <h3>Full-Length 15-Minute Exam Simulation</h3>
+                            <p>10 High-Yield Questions • Timed Countdown • Standard Marking Scheme (+4 Correct, -1 Incorrect)</p>
+                            
+                            <div class="mock-config-row">
+                                <label class="mock-config-label">
+                                    <span>Subject:</span>
+                                    <select id="mockSubjectSelect" class="param-select">
+                                        <option value="Physics & Chemistry">Physics &amp; Chemistry</option>
+                                        <option value="Biology & Life Sciences">Biology &amp; Life Sciences</option>
+                                        <option value="Computer Science">Computer Science &amp; OOP</option>
+                                        <option value="General Science">General Science</option>
+                                    </select>
+                                </label>
+                                <label class="mock-config-label">
+                                    <input type="checkbox" id="mockNegativeToggle" checked>
+                                    <span>Enable Negative Marking (-1 for wrong)</span>
+                                </label>
+                            </div>
+
+                            <button class="btn btn-hero-primary btn-lg" id="startMockTestBtn">
+                                <span>Launch Mock Test Arena ➔</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Active Exam Screen -->
+                    <div class="mock-active-screen" id="mockActiveScreen" style="display: none;">
+                        <div class="mock-exam-header-bar">
+                            <div>
+                                <h4 id="mockExamHeaderTitle">Full-Length Mock Test Simulator</h4>
+                                <span class="mock-scheme-tag">Marking: +4 / -1</span>
+                            </div>
+                            <div class="mock-countdown-timer" id="mockTimerDisplay">15:00</div>
+                        </div>
+
+                        <div class="mock-layout-grid">
+                            <!-- Left: Question Body -->
+                            <div class="mock-question-pane">
+                                <div class="mock-q-num" id="mockQuestionNumber">Question 1 of 10</div>
+                                <h3 class="mock-q-text" id="mockQuestionPrompt">Loading test question...</h3>
+                                <div class="mock-options-group" id="mockOptionsGroup"></div>
+                                <div class="mock-nav-actions">
+                                    <button class="btn-micro-tool" id="mockClearChoiceBtn">Clear Response</button>
+                                    <button class="btn-micro-tool" id="mockFlagBtn">🚩 Flag for Review</button>
+                                    <button class="btn-micro-tool" id="mockPrevBtn">◀ Previous</button>
+                                    <button class="btn-micro-tool" id="mockNextBtn">Next ▶</button>
+                                </div>
+                            </div>
+
+                            <!-- Right: Question Palette -->
+                            <div class="mock-palette-pane">
+                                <h5>Question Navigation Palette</h5>
+                                <div class="palette-grid" id="mockPaletteGrid"></div>
+                                <div class="palette-legend">
+                                    <div><span class="legend-dot answered"></span> Answered</div>
+                                    <div><span class="legend-dot flagged"></span> Flagged</div>
+                                    <div><span class="legend-dot unvisited"></span> Unvisited</div>
+                                </div>
+                                <button class="btn btn-generate-submit btn-block" id="mockFinishBtn" style="margin-top: 16px;">
+                                    <span>Finish &amp; Submit Test</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post-Test Scorecard -->
+                    <div class="mock-results-screen" id="mockResultsScreen" style="display: none;">
+                        <div class="text-center">
+                            <div class="score-crest">📊</div>
+                            <h2>Mock Test Performance Analysis</h2>
+                            <div class="mock-score-banner">
+                                <div class="mock-score-col">
+                                    <strong id="mockFinalScore">0</strong>
+                                    <span>Net Score (Max 40)</span>
+                                </div>
+                                <div class="mock-score-col">
+                                    <strong id="mockFinalAccuracy">0%</strong>
+                                    <span>Accuracy</span>
+                                </div>
+                                <div class="mock-score-col">
+                                    <strong id="mockFinalAttempted">0 / 10</strong>
+                                    <span>Attempted</span>
+                                </div>
+                            </div>
+                            <p style="margin-top: 16px;">Results permanently saved to your MongoDB Atlas dashboard.</p>
+                            <div style="margin-top: 20px;">
+                                <a href="dashboard.html" class="btn btn-hero-primary">View Student Dashboard ➔</a>
+                                <button class="btn btn-hero-secondary" id="mockRestartBtn">Take Another Test</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 9. PLATFORM FEATURES ARSENAL ================= -->
+        <section class="features-section" id="features">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="section-tag-badge">PLATFORM ARSENAL</span>
+                    <h2 class="section-main-heading">Engineered for Academic Superiority</h2>
+                    <p class="section-description">Everything you need to master your syllabus in a fraction of the time.</p>
+                </div>
+
+                <div class="features-cards-grid">
+                    <div class="feature-card spot-card">
+                        <div class="feature-card-icon">📝</div>
+                        <h3 class="feature-card-title">12 Notes Formats</h3>
+                        <p class="feature-card-desc">From 5-minute executive summaries to full textbook derivations, formula cheat-sheets, and bilingual Hindi notes.</p>
+                    </div>
+
+                    <div class="feature-card spot-card">
+                        <div class="feature-card-icon">⚡</div>
+                        <h3 class="feature-card-title">3D Rapid Flashcards</h3>
+                        <p class="feature-card-desc">Interactive flip cards for quick active recall in transit or right before walking into the examination center.</p>
+                    </div>
+
+                    <div class="feature-card spot-card">
+                        <div class="feature-card-icon">🎯</div>
+                        <h3 class="feature-card-title">MCQ Quiz Arena</h3>
+                        <p class="feature-card-desc">Auto-generated multiple choice questions with countdown timer, negative marking, and concept explanations.</p>
+                    </div>
+
+                    <div class="feature-card spot-card">
+                        <div class="feature-card-icon">🔒</div>
+                        <h3 class="feature-card-title">MongoDB Atlas Vault</h3>
+                        <p class="feature-card-desc">Save your notes securely on the cloud so your revisions and quiz progress sync across desktop and mobile.</p>
+                    </div>
+
+                    <div class="feature-card spot-card">
+                        <div class="feature-card-icon">📖</div>
+                        <h3 class="feature-card-title">Eye-Comfort Mode</h3>
+                        <p class="feature-card-desc">Soft warm amber color palette crafted specifically for late-night study sessions without digital eye fatigue.</p>
+                    </div>
+
+                    <div class="feature-card spot-card">
+                        <div class="feature-card-icon">🚀</div>
+                        <h3 class="feature-card-title">Multi-Cloud AI</h3>
+                        <p class="feature-card-desc">Zero-fail redundancy powered by Gemini, Groq, OpenRouter, Cerebras, SambaNova, and our built-in Academic Engine.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 10. ABOUT MISSION & OWNER ATTRIBUTION ================= -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <div class="about-card-box spot-card text-center">
+                    <span class="section-tag-badge">OUR CREED</span>
+                    <h2 class="section-main-heading">Built to Make Quality Education Effortless</h2>
+                    <p class="about-narrative">
+                        Traditional study routines force students to spend 80% of their time writing manual summaries and only 20% actually understanding. 
+                        <strong>Study Notes</strong> flips this ratio using academic knowledge graphs, allowing students to learn smarter, revise faster, and score better.
+                    </p>
+                    <div class="about-guarantee-pills">
+                        <span class="guarantee-pill">✓ Project Lead: Nikhil Tetarwal</span>
+                        <span class="guarantee-pill">✓ 100% Free for Students Worldwide</span>
+                        <span class="guarantee-pill">✓ CBSE, JEE, NEET &amp; University Aligned</span>
+                        <span class="guarantee-pill">✓ Private &amp; Secure Cloud Storage</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= 11. ULTRA-MODERN SMART FOOTER ================= -->
+    <footer class="modern-footer">
+        <div class="footer-top-strip">
+            <button class="footer-scroll-top-btn" id="footerBackToTopBtn">
+                <span>▲ Back to Top</span>
+            </button>
+        </div>
+
+        <div class="footer-main-grid">
+            <!-- Brand Column -->
+            <div class="footer-col brand-col">
+                <div class="brand-logo footer-brand">
+                    <div class="logo-crest"><span class="crest-text">SN</span></div>
+                    <span class="brand-prime">STUDY<span class="accent-text">NOTES</span></span>
+                </div>
+                <p class="footer-mission-text">
+                    Next-generation academic intelligence platform. Learn Smarter. Revise Faster. Score Better. Engineered by <strong>Nikhil Tetarwal</strong>.
+                </p>
+                <div class="system-telemetry-badge">
+                    <span class="telemetry-dot"></span>
+                    <span>AI Engine Status: <strong>Optimal (Connected to MongoDB Atlas)</strong></span>
+                </div>
+            </div>
+
+            <!-- Navigation Column -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#generator">Notes Studio</a></li>
+                    <li><a href="#quick-revision">Quick Revision</a></li>
+                    <li><a href="#mcq-section">MCQ Practice</a></li>
+                    <li><a href="#pyq-section">Previous Year Questions</a></li>
+                    <li><a href="#mock-section">Mock Tests</a></li>
+                    <li><a href="dashboard.html">Student Dashboard</a></li>
+                </ul>
+            </div>
+
+            <!-- Student Access Column -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Student Access</h4>
+                <ul class="footer-links-list">
+                    <li><a href="login.html">Student Sign In</a></li>
+                    <li><a href="register.html">Create Free Account</a></li>
+                    <li><a href="dashboard.html">Personal Notes Vault</a></li>
+                    <li><a href="users.html">Student Directory Table</a></li>
+                    <li><a href="#" id="footerReplayIntroLink">Replay Brand Intro</a></li>
+                </ul>
+            </div>
+
+            <!-- Supported Curricula Column -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Supported Curricula</h4>
+                <ul class="footer-links-list">
+                    <li><span>CBSE Class 9-12 Boards</span></li>
+                    <li><span>JEE Main &amp; Advanced (IITs)</span></li>
+                    <li><span>NEET Medical Sciences</span></li>
+                    <li><span>B.Tech / University Degrees</span></li>
+                    <li><span>UPSC Civil Services</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Giant Ambient Watermark -->
+        <div class="footer-watermark-title">STUDY NOTES</div>
+
+        <!-- Bottom Copyright & Legal Bar -->
+        <div class="footer-bottom-bar">
+            <div class="bottom-bar-inner">
+                <p>&copy; 2026 Study Notes Inc. All academic rights reserved. Project Lead: Nikhil Tetarwal.</p>
+                <div class="bottom-legal-group">
+                    <span>Privacy Policy</span>
+                    <span>&bull;</span>
+                    <span>Terms &amp; Conditions</span>
+                    <span>&bull;</span>
+                    <span>Academic Integrity</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= 12. AUTHENTICATION GATEWAY MODAL ================= -->
+    <div class="auth-modal-backdrop" id="authModalBackdrop" aria-hidden="true">
+        <div class="auth-modal-card spot-card">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+            <div class="modal-header-block text-center">
+                <div class="modal-crest-badge">📚</div>
+                <h3 class="modal-main-title" id="authModalHeading">Student Sign In</h3>
+                <p class="modal-subtext" id="authModalSubheading">Access your saved notes, quizzes, and personal vault</p>
+            </div>
+
+            <!-- Tabs Switcher -->
+            <div class="modal-tabs-strip">
+                <button type="button" class="tab-switch-btn active" id="modalTabLoginBtn">Sign In</button>
+                <button type="button" class="tab-switch-btn" id="modalTabRegisterBtn">Create Account</button>
+            </div>
+
+            <!-- SIGN IN FORM -->
+            <form class="auth-form-body" id="loginForm">
+                <div class="input-form-row">
+                    <label class="form-row-label" for="loginEmail">Student Email</label>
+                    <input type="email" id="loginEmail" class="form-input-box" placeholder="student@example.com" required autocomplete="email">
+                </div>
+
+                <div class="input-form-row">
+                    <div class="label-split-row">
+                        <label class="form-row-label" for="loginPassword">Password</label>
+                    </div>
+                    <div class="pwd-wrapper">
+                        <input type="password" id="loginPassword" class="form-input-box" placeholder="Enter password" required autocomplete="current-password">
+                        <button type="button" class="pwd-eye-trigger" data-target="loginPassword" title="Show/Hide Password">👁️</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-auth-submit" id="loginSubmitBtn">
+                    <span>Sign In to Study Notes</span>
+                </button>
+
+                <div class="auth-switch-prompt text-center">
+                    <span>New student?</span>
+                    <a href="#" class="switch-link-accent" id="linkToRegister">Create free account</a>
+                </div>
+            </form>
+
+            <!-- REGISTRATION FORM -->
+            <form class="auth-form-body" id="registerForm" style="display: none;">
+                <div class="input-form-row">
+                    <label class="form-row-label" for="regName">Full Name</label>
+                    <input type="text" id="regName" class="form-input-box" placeholder="e.g. Alex Sharma" required autocomplete="name">
+                </div>
+
+                <div class="input-form-row">
+                    <label class="form-row-label" for="regEmail">Student Email</label>
+                    <input type="email" id="regEmail" class="form-input-box" placeholder="student@example.com" required autocomplete="email">
+                </div>
+
+                <div class="input-form-row">
+                    <label class="form-row-label" for="regPassword">Create Password</label>
+                    <div class="pwd-wrapper">
+                        <input type="password" id="regPassword" class="form-input-box" placeholder="Minimum 6 characters" minlength="6" required autocomplete="new-password">
+                        <button type="button" class="pwd-eye-trigger" data-target="regPassword" title="Show/Hide Password">👁️</button>
+                    </div>
+                </div>
+
+                <div class="input-form-row">
+                    <label class="form-row-label" for="regGrade">Current Academic Level</label>
+                    <select id="regGrade" class="form-input-box">
+                        <option value="school">High School (Class 9 - 12)</option>
+                        <option value="college" selected>College / University</option>
+                        <option value="competitive">Competitive Exams (JEE, NEET, UPSC)</option>
+                        <option value="other">Self-Learner</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-auth-submit" id="registerSubmitBtn">
+                    <span>Create Free Student Account</span>
+                </button>
+
+                <div class="auth-switch-prompt text-center">
+                    <span>Already registered?</span>
+                    <a href="#" class="switch-link-accent" id="linkToLogin">Sign In here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= 13. STUDENT SAVED NOTES VAULT MODAL ================= -->
+    <div class="auth-modal-backdrop" id="vaultModalBackdrop" aria-hidden="true">
+        <div class="auth-modal-card spot-card" style="max-width: 680px; width: 92%;">
+            <button class="modal-close-btn" id="vaultModalCloseBtn" aria-label="Close dialog">&times;</button>
+            <div class="modal-header-block text-center">
+                <div class="modal-crest-badge">📂</div>
+                <h3 class="modal-main-title">Student Notes Vault</h3>
+                <p class="modal-subtext">Access, reload, and manage your notes saved in MongoDB Atlas Cloud</p>
+            </div>
+            <div id="vaultNotesList" style="max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; padding: 4px;">
+                <!-- Populated dynamically via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Application -->
+    <script src="java.js" defer></script>
+</body>
+</html>

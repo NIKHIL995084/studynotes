@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard — Study Notes</title>
+    <!-- Google Fonts for Ultra-Clean Tech Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- FLOATING TOP NAVIGATION -->
+    <header class="floating-header" id="mainHeader">
+        <div class="header-inner">
+            <a href="index.html" class="brand-logo" aria-label="Study Notes Home">
+                <div class="logo-crest">
+                    <span class="crest-text">SN</span>
+                    <span class="crest-dot"></span>
+                </div>
+                <div class="brand-naming">
+                    <span class="brand-prime">STUDY<span class="accent-text">NOTES</span></span>
+                    <span class="brand-badge-tag">STUDENT DASHBOARD</span>
+                </div>
+            </a>
+
+            <nav class="nav-links-center">
+                <a href="index.html#home" class="nav-item">Home</a>
+                <a href="index.html#generator" class="nav-item">Generate Notes</a>
+                <a href="index.html#quick-revision" class="nav-item">Quick Revision</a>
+                <a href="index.html#mcq-section" class="nav-item">MCQ Practice</a>
+                <a href="index.html#pyq-section" class="nav-item">PYQs</a>
+                <a href="index.html#mock-section" class="nav-item">Mock Tests</a>
+                <a href="dashboard.html" class="nav-item active">Dashboard</a>
+            </nav>
+
+            <div class="header-right-tools">
+                <button class="theme-switch-btn" id="themeToggleBtn" title="Toggle Theme (Dark / Light / Eye-Comfort)">
+                    <span id="themeIcon">🌙</span>
+                </button>
+
+                <div class="account-dropdown-wrapper">
+                    <button class="account-badge-btn" id="accountTriggerBtn">
+                        <span class="avatar-initials" id="navAvatarInitials">ST</span>
+                        <span class="avatar-name" id="navUserName">Student</span>
+                        <span class="caret-arrow">▾</span>
+                    </button>
+
+                    <div class="account-menu-card" id="accountDropdownMenu">
+                        <div class="menu-user-banner">
+                            <div class="banner-avatar" id="dropdownAvatarInitials">ST</div>
+                            <div class="banner-text">
+                                <strong id="dropdownUserFullName">Student Account</strong>
+                                <small id="dropdownUserEmail">student@example.com</small>
+                            </div>
+                        </div>
+                        <div class="menu-divider"></div>
+                        <a href="index.html#generator" class="menu-link">📝 Generate New Notes</a>
+                        <a href="#vault-section" class="menu-link">💾 Saved Notes Vault</a>
+                        <a href="users.html" class="menu-link">📊 Student Records Table</a>
+                        <div class="menu-divider"></div>
+                        <button class="menu-link logout-btn-item" id="logoutBtn">
+                            <span>🚪</span>
+                            <strong>Sign Out</strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main-container">
+        <!-- WELCOME BANNER -->
+        <section class="dashboard-welcome-banner spot-card">
+            <div class="welcome-left">
+                <div class="welcome-badge">🎓 VERIFIED ACADEMIC PROFILE</div>
+                <h1 class="welcome-heading">Welcome back, <span id="dashStudentName">Student</span>!</h1>
+                <p class="welcome-subtext" id="dashStudentEmail">Access your personalized notes, test scores, and learning progress.</p>
+                <div class="academic-tags-row">
+                    <span class="tag-pill" id="dashGradeTag">College / University</span>
+                    <span class="tag-pill" id="dashSubjectTag">General Studies</span>
+                    <span class="tag-pill status-online">● MongoDB Cloud Sync Active</span>
+                </div>
+            </div>
+            <div class="welcome-actions">
+                <a href="index.html#generator" class="btn btn-hero-primary">
+                    <span>⚡ Generate New Notes</span>
+                </a>
+                <a href="index.html#mcq-section" class="btn btn-hero-secondary">
+                    <span>🎯 Practice MCQ Test</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- REAL METRICS CARDS -->
+        <section class="dashboard-metrics-grid">
+            <div class="metric-card spot-card">
+                <div class="metric-icon-wrap">📚</div>
+                <strong class="metric-num" id="dashTotalNotes">0</strong>
+                <span class="metric-title">Notes Generated &amp; Saved</span>
+            </div>
+            <div class="metric-card spot-card">
+                <div class="metric-icon-wrap">🎯</div>
+                <strong class="metric-num" id="dashQuizAttempts">0</strong>
+                <span class="metric-title">MCQ Quizzes Completed</span>
+            </div>
+            <div class="metric-card spot-card">
+                <div class="metric-icon-wrap">📈</div>
+                <strong class="metric-num" id="dashAvgAccuracy">0%</strong>
+                <span class="metric-title">Average Quiz Accuracy</span>
+            </div>
+            <div class="metric-card spot-card">
+                <div class="metric-icon-wrap">⏱️</div>
+                <strong class="metric-num" id="dashMockTests">0</strong>
+                <span class="metric-title">Mock Tests Attempted</span>
+            </div>
+        </section>
+
+        <!-- DASHBOARD TABS / SECTIONS -->
+        <div class="dashboard-content-layout">
+            <!-- LEFT MAIN: SAVED NOTES VAULT -->
+            <section class="dash-section-card spot-card" id="vault-section">
+                <div class="section-card-header">
+                    <div>
+                        <h2 class="section-card-title">💾 My Notes Vault (MongoDB Atlas)</h2>
+                        <p class="section-card-desc">Your permanently saved notes, formulas, and high-yield revision summaries.</p>
+                    </div>
+                    <div class="vault-tools-header">
+                        <input type="text" id="vaultSearchInput" class="vault-search-box" placeholder="Search saved notes...">
+                        <a href="index.html#generator" class="btn-micro-tool">+ Create Note</a>
+                    </div>
+                </div>
+
+                <div id="dashVaultContainer" class="dash-vault-list">
+                    <div class="empty-state-card text-center">
+                        <p>Loading your notes from MongoDB Atlas...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT SIDEBAR: RECENT QUIZZES & MOCK TESTS -->
+            <aside class="dash-sidebar-col">
+                <!-- QUIZ PERFORMANCE -->
+                <div class="dash-section-card spot-card">
+                    <div class="section-card-header">
+                        <h3 class="section-card-title">🎯 Recent Quiz Results</h3>
+                    </div>
+                    <div id="dashQuizList" class="dash-activity-list">
+                        <p class="empty-text">No quizzes completed yet. <a href="index.html#mcq-section" class="accent-link">Take your first quiz ➔</a></p>
+                    </div>
+                </div>
+
+                <!-- MOCK TESTS -->
+                <div class="dash-section-card spot-card" style="margin-top: 24px;">
+                    <div class="section-card-header">
+                        <h3 class="section-card-title">⏱️ Mock Test Simulator History</h3>
+                    </div>
+                    <div id="dashMockList" class="dash-activity-list">
+                        <p class="empty-text">No mock tests attempted yet. <a href="index.html#mock-section" class="accent-link">Launch a mock test ➔</a></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- NOTE PREVIEW / EDIT MODAL -->
+    <div class="auth-modal-backdrop" id="notePreviewModal" aria-hidden="true">
+        <div class="auth-modal-card spot-card" style="max-width: 780px; width: 94%;">
+            <button class="modal-close-btn" id="noteModalCloseBtn">&times;</button>
+            <div class="modal-header-block">
+                <span class="output-meta-pill" id="modalNoteMeta">Syllabus Note</span>
+                <h3 class="modal-main-title" id="modalNoteTitle" style="margin-top: 8px;">Topic Title</h3>
+            </div>
+            <div class="modal-body-scroll" style="max-height: 480px; overflow-y: auto; padding-right: 8px;">
+                <div class="stream-note-block">
+                    <h4 class="stream-heading">📌 Core Concepts</h4>
+                    <ul class="stream-bullet-list" id="modalNoteConcepts"></ul>
+                </div>
+                <div class="stream-note-block">
+                    <h4 class="stream-heading">💡 Formulas &amp; Equations</h4>
+                    <div class="formula-display-box" id="modalNoteFormula"></div>
+                </div>
+                <div class="stream-note-block">
+                    <h4 class="stream-heading">🎯 High-Yield Exam Tip</h4>
+                    <p class="exam-caution-box" id="modalNoteTip"></p>
+                </div>
+            </div>
+            <div class="modal-footer-row" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                <button class="btn-micro-tool" id="modalCopyBtn">📋 Copy</button>
+                <button class="btn-micro-tool" id="modalPrintBtn">🖨️ Print</button>
+                <button class="btn-micro-tool" id="modalDownloadBtn">⬇️ Download MD</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODERN FOOTER -->
+    <footer class="modern-footer">
+        <div class="footer-main-grid">
+            <div class="footer-col brand-col">
+                <div class="brand-logo footer-brand">
+                    <div class="logo-crest"><span class="crest-text">SN</span></div>
+                    <span class="brand-prime">STUDY<span class="accent-text">NOTES</span></span>
+                </div>
+                <p class="footer-mission-text">
+                    Next-generation academic intelligence infrastructure. Engineered by <strong>Nikhil Tetarwal</strong>.
+                </p>
+                <div class="system-telemetry-badge">
+                    <span class="telemetry-dot"></span>
+                    <span>AI Engine Status: <strong>Optimal (Connected to MongoDB Atlas)</strong></span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#generator">Notes Studio</a></li>
+                    <li><a href="index.html#quick-revision">Quick Revision</a></li>
+                    <li><a href="index.html#mcq-section">MCQ Practice</a></li>
+                    <li><a href="index.html#mock-section">Mock Tests</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Curricula</h4>
+                <ul class="footer-links-list">
+                    <li><span>CBSE &amp; State Boards</span></li>
+                    <li><span>JEE Main &amp; Advanced</span></li>
+                    <li><span>NEET Medical Entrance</span></li>
+                    <li><span>University Degree Courses</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <div class="bottom-bar-inner">
+                <p>&copy; 2026 Study Notes Inc. All academic rights reserved. Project Lead: Nikhil Tetarwal.</p>
+                <div class="bottom-legal-group">
+                    <span>Privacy Protocol</span>
+                    <span>&bull;</span>
+                    <span>Terms of Academic Use</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Frontend Interactive Script -->
+    <script src="java.js" defer></script>
+</body>
+</html>

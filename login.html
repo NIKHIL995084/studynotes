@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Sign In — Study Notes</title>
+    <!-- Google Fonts for Clean Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark" class="auth-page-body">
+
+    <!-- Header -->
+    <header class="floating-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand-logo" aria-label="Study Notes Home">
+                <div class="logo-crest"><span class="crest-text">SN</span></div>
+                <div class="brand-naming">
+                    <span class="brand-prime">STUDY<span class="accent-text">NOTES</span></span>
+                    <span class="brand-badge-tag">STUDENT PORTAL</span>
+                </div>
+            </a>
+            <div class="header-right-tools">
+                <a href="index.html" class="btn-micro-tool">← Back to Home</a>
+                <button class="theme-switch-btn" id="themeToggleBtn" title="Toggle Theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Login Container -->
+    <main class="auth-page-main">
+        <div class="auth-card-container">
+            <div class="standalone-auth-card spot-card">
+                <div class="auth-card-header text-center">
+                    <div class="auth-brand-badge">🔐</div>
+                    <h1 class="auth-card-title">Student Sign In</h1>
+                    <p class="auth-card-subtitle">Access your personalized notes, test scores &amp; cloud vault</p>
+                </div>
+
+                <form class="standalone-form" id="standaloneLoginForm">
+                    <div class="form-input-group">
+                        <label for="loginUserEmail" class="input-label-text">Student Email Address</label>
+                        <input type="email" id="loginUserEmail" class="form-input-box" placeholder="student@example.com" required autocomplete="email">
+                    </div>
+
+                    <div class="form-input-group">
+                        <div class="label-row-flex">
+                            <label for="loginUserPassword" class="input-label-text">Password</label>
+                        </div>
+                        <div class="pwd-wrapper">
+                            <input type="password" id="loginUserPassword" class="form-input-box" placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="pwd-eye-trigger" data-target="loginUserPassword" title="Show/Hide Password">👁️</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-auth-submit-lg" id="standaloneLoginBtn">
+                        <span>Sign In to Study Notes</span>
+                        <span class="btn-arrow">➔</span>
+                    </button>
+                </form>
+
+                <div class="auth-card-footer text-center">
+                    <span>Don't have an account yet?</span>
+                    <a href="register.html" class="switch-link-highlight">Create free account here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="modern-footer text-center" style="padding: 20px;">
+        <p>&copy; 2026 Study Notes Inc. All academic rights reserved. Project Lead: Nikhil Tetarwal.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script src="java.js" defer></script>
+</body>
+</html>

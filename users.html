@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Database Records — Study Notes</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .db-page-wrap {
+            max-width: 1240px;
+            margin: 100px auto 60px;
+            padding: 0 24px;
+        }
+
+        .db-header-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .db-title-group h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0 0 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .db-title-group p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .db-stats-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: var(--cyber-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .db-search-bar {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .db-search-input {
+            flex: 1;
+            padding: 12px 18px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .db-search-input:focus {
+            border-color: var(--primary-indigo);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .db-table-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .db-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .db-table th {
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            font-weight: 700;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .db-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            vertical-align: middle;
+        }
+
+        .db-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .db-table tr:hover td {
+            background: rgba(99, 102, 241, 0.04);
+        }
+
+        .user-id-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .user-name-bold {
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar-mini {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .badge-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .badge-college {
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--cyber-cyan);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .badge-school {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold-accent);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-competitive {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--emerald-accent);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .date-col {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Header Navbar -->
+    <header class="navbar" id="mainNavbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Study<span class="logo-accent">Notes</span></span>
+            </a>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-secondary btn-sm">← Back to Home</a>
+                <a href="register.html" class="btn btn-primary btn-sm">+ Register New</a>
+                <button class="theme-switch-btn" id="themeToggleBtn" title="Toggle Theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="db-page-wrap">
+        <div class="db-header-card">
+            <div class="db-title-group">
+                <h1><span>📊</span> MongoDB Live Student Records</h1>
+                <p>All registered students displayed in clean single-row tabular format</p>
+            </div>
+            <div class="db-stats-badge">
+                <span>DATABASE: studynotes</span> &bull; 
+                <span id="userCountBadge">Loading...</span>
+            </div>
+        </div>
+
+        <div class="db-search-bar">
+            <input type="text" class="db-search-input" id="searchInput" placeholder="🔍 Search by name, email, grade, or subject...">
+            <button class="btn btn-secondary" id="refreshBtn">🔄 Refresh Data</button>
+        </div>
+
+        <div class="db-table-container">
+            <table class="db-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">#</th>
+                        <th>Student Name</th>
+                        <th>Email Address</th>
+                        <th>Academic Level</th>
+                        <th>Primary Subject</th>
+                        <th>Registered Date</th>
+                        <th>MongoDB ID</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <tr>
+                        <td colspan="7" class="empty-state">Loading students from MongoDB Atlas...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Main JS for Cursor & Theme -->
+    <script src="java.js" defer></script>
+
+    <!-- Live Data Fetch Script -->
+    <script>
+        let allUsers = [];
+
+        async function fetchAndRenderUsers() {
+            const tbody = document.getElementById('usersTableBody');
+            const countBadge = document.getElementById('userCountBadge');
+            
+            try {
+                const res = await fetch('/api/users');
+                const data = await res.json();
+
+                if (!res.ok) throw new Error(data.error || 'Failed to load');
+
+                allUsers = data.users || [];
+                countBadge.textContent = `${allUsers.length} Students Total`;
+                renderRows(allUsers);
+            } catch (err) {
+                tbody.innerHTML = `<tr><td colspan="7" class="empty-state">⚠️ Error loading records: ${err.message}</td></tr>`;
+            }
+        }
+
+        function renderRows(users) {
+            const tbody = document.getElementById('usersTableBody');
+            if (users.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="empty-state">No students found matching your search.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = users.map((u, idx) => {
+                const initials = (u.name || 'ST').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                const gradeClass = u.grade === 'school' ? 'badge-school' : (u.grade === 'competitive' ? 'badge-competitive' : 'badge-college');
+                const regDate = u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-IN', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }) : 'N/A';
+
+                return `
+                    <tr>
+                        <td><strong>${idx + 1}</strong></td>
+                        <td>
+                            <div class="user-name-bold">
+                                <span class="user-avatar-mini">${initials}</span>
+                                <span>${escapeHtml(u.name || 'N/A')}</span>
+                            </div>
+                        </td>
+                        <td><code>${escapeHtml(u.email || 'N/A')}</code></td>
+                        <td><span class="badge-pill ${gradeClass}">${escapeHtml(u.grade || 'college')}</span></td>
+                        <td><span style="font-weight: 600; text-transform: capitalize;">${escapeHtml((u.subject || 'general').replace('_', ' '))}</span></td>
+                        <td class="date-col">${regDate}</td>
+                        <td><span class="user-id-code">${u._id || ''}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase().trim();
+            const filtered = allUsers.filter(u => 
+                (u.name && u.name.toLowerCase().includes(q)) ||
+                (u.email && u.email.toLowerCase().includes(q)) ||
+                (u.grade && u.grade.toLowerCase().includes(q)) ||
+                (u.subject && u.subject.toLowerCase().includes(q))
+            );
+            renderRows(filtered);
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', fetchAndRenderUsers);
+
+        // Load on start
+        window.addEventListener('DOMContentLoaded', fetchAndRenderUsers);
+    </script>
+</body>
+</html>

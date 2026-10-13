@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Free Student Account — Study Notes</title>
+    <!-- Google Fonts for Clean Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark" class="auth-page-body">
+
+    <!-- Header -->
+    <header class="floating-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand-logo" aria-label="Study Notes Home">
+                <div class="logo-crest"><span class="crest-text">SN</span></div>
+                <div class="brand-naming">
+                    <span class="brand-prime">STUDY<span class="accent-text">NOTES</span></span>
+                    <span class="brand-badge-tag">STUDENT PORTAL</span>
+                </div>
+            </a>
+            <div class="header-right-tools">
+                <a href="index.html" class="btn-micro-tool">← Back to Home</a>
+                <button class="theme-switch-btn" id="themeToggleBtn" title="Toggle Theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Registration Container -->
+    <main class="auth-page-main">
+        <div class="auth-card-container">
+            <div class="standalone-auth-card spot-card">
+                <div class="auth-card-header text-center">
+                    <div class="auth-brand-badge">🎓</div>
+                    <h1 class="auth-card-title">Create Student Account</h1>
+                    <p class="auth-card-subtitle">Master your syllabus with intelligent notes &amp; cloud storage</p>
+                </div>
+
+                <form class="standalone-form" id="standaloneRegisterForm">
+                    <!-- Full Name -->
+                    <div class="form-input-group">
+                        <label for="regFullName" class="input-label-text">Full Name</label>
+                        <input type="text" id="regFullName" class="form-input-box" placeholder="e.g. Alex Sharma" required autocomplete="name">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-input-group">
+                        <label for="regUserEmail" class="input-label-text">Student Email Address</label>
+                        <input type="email" id="regUserEmail" class="form-input-box" placeholder="student@example.com" required autocomplete="email">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-input-group">
+                        <div class="label-row-flex">
+                            <label for="regUserPassword" class="input-label-text">Create Password</label>
+                            <span class="password-hint">Min 6 characters</span>
+                        </div>
+                        <div class="pwd-wrapper">
+                            <input type="password" id="regUserPassword" class="form-input-box" placeholder="Enter a secure password" minlength="6" required autocomplete="new-password">
+                            <button type="button" class="pwd-eye-trigger" data-target="regUserPassword" title="Show/Hide Password">👁️</button>
+                        </div>
+                    </div>
+
+                    <!-- Academic Grade Level -->
+                    <div class="form-input-group">
+                        <label for="regUserGrade" class="input-label-text">Academic Level / Class</label>
+                        <select id="regUserGrade" class="form-input-box">
+                            <option value="school">High School (Class 9 - 12)</option>
+                            <option value="college" selected>College / University Undergraduate</option>
+                            <option value="competitive">Competitive Entrance (JEE, NEET, UPSC, GATE)</option>
+                            <option value="postgrad">Postgraduate / Research</option>
+                            <option value="other">Self-Learner</option>
+                        </select>
+                    </div>
+
+                    <!-- Primary Subject Focus -->
+                    <div class="form-input-group">
+                        <label for="regUserSubject" class="input-label-text">Primary Subject Focus</label>
+                        <select id="regUserSubject" class="form-input-box">
+                            <option value="physics_chem">Physics &amp; Chemistry</option>
+                            <option value="biology_med">Biology &amp; Medical Sciences</option>
+                            <option value="cs_tech" selected>Computer Science &amp; Engineering</option>
+                            <option value="mathematics">Mathematics &amp; Statistics</option>
+                            <option value="humanities">Commerce, Economics &amp; Humanities</option>
+                            <option value="general">General Science</option>
+                        </select>
+                    </div>
+
+                    <!-- Institution / College (Optional) -->
+                    <div class="form-input-group">
+                        <label for="regInstitution" class="input-label-text">College / University / School (Optional)</label>
+                        <input type="text" id="regInstitution" class="form-input-box" placeholder="e.g. IIT Bombay, Delhi University">
+                    </div>
+
+                    <!-- Terms Agreement -->
+                    <div class="terms-checkbox-wrap">
+                        <input type="checkbox" id="agreeTerms" required checked>
+                        <label for="agreeTerms">I agree to the <a href="#" class="accent-link">Terms of Academic Use</a> and <a href="#" class="accent-link">Privacy Protocol</a>.</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-auth-submit-lg" id="standaloneRegisterBtn">
+                        <span>Create Free Account</span>
+                        <span class="btn-arrow">➔</span>
+                    </button>
+                </form>
+
+                <!-- Footer Switch Link -->
+                <div class="auth-card-footer text-center">
+                    <span>Already have a Study Notes account?</span>
+                    <a href="login.html" class="switch-link-highlight">Sign In here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Auth Footer -->
+    <footer class="modern-footer text-center" style="padding: 20px;">
+        <p>&copy; 2026 Study Notes Inc. All academic rights reserved. Project Lead: Nikhil Tetarwal.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script src="java.js" defer></script>
+</body>
+</html>
